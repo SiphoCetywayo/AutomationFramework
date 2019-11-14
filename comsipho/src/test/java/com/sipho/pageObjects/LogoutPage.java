@@ -1,5 +1,6 @@
 package com.sipho.pageObjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -22,7 +23,8 @@ public class LogoutPage {
     WebElement lnkLogout;
 
     public void clickLogout() {
-        lnkLogout.click();
+        JavascriptExecutor js = (JavascriptExecutor)localDriver;
+        js.executeScript("arguments[0].click();",lnkLogout);
     }
 }
 

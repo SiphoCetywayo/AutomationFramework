@@ -1,5 +1,6 @@
 package com.sipho.pageObjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -66,8 +67,8 @@ public class addCustomerPage {
     WebElement btnSubmit;
 
     public void clickAddNewCustomer() {
-        lnkAddNewCustomer.click();
-
+        JavascriptExecutor js = (JavascriptExecutor)localDriver;
+        js.executeScript("arguments[0].click();",lnkAddNewCustomer);
     }
 
     public void custName(String cname) {
