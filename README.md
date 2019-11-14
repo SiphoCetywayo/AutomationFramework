@@ -1,4 +1,5 @@
 # AutomationFramework
+# AutomationFramework
 This solution was buit using intellij
 This is a mavin project. All libraries are available from POM.XML
 To 3 the 3 scripted test cases - go to TestNG.xml you will find 
