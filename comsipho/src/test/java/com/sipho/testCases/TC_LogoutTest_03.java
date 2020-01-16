@@ -32,6 +32,7 @@ public class TC_LogoutTest_03 extends BaseClass {
             logoutPage.clickLogout();
             try {
                 Thread.sleep(3000);
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -10,8 +10,8 @@
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.sipho.testCases.TC_LoginTest_01"/>
-            <class name="com.sipho.testCases.TC_AddNewCustomerTest_02"/>
-            <class name="com.sipho.testCases.TC_LogoutTest_03" />
+<!--            <class name="com.sipho.testCases.TC_AddNewCustomerTest_02"/>-->
+<!--            <class name="com.sipho.testCases.TC_LogoutTest_03" />-->
         </classes>
     </test>  
 </suite>

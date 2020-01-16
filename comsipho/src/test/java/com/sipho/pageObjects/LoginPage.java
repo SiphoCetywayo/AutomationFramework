@@ -9,12 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
 
     WebDriver localDriver;
-    //LoginPage loginPg = new LoginPage(driver);
 
     public LoginPage(WebDriver remoteDriver){
         localDriver = remoteDriver;
         PageFactory.initElements(remoteDriver, this);
-
     }
 
     @FindBy(name="uid")
@@ -34,17 +32,14 @@ public class LoginPage {
     WebElement title;
 
     public void setUserName(String uName){
-
         txtUserName.sendKeys(uName);
     }
 
     public void setPassword(String uPassword){
-
         txtPassword.sendKeys(uPassword);
     }
 
     public void clickSubmit(){
-
         btnLogin.click();
     }
 }

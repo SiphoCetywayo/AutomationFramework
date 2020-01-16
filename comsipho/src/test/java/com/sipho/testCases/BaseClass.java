@@ -46,17 +46,20 @@ public class BaseClass {
             System.setProperty("webdriver.gecko.driver", readConfig.getFirefoxPath());
             driver = new FirefoxDriver();
         }
-
         driver.get(baseURL);
 
     }
 
     public void takeScreenShot(WebDriver driver, String tname) throws IOException {
-        TakesScreenshot ts = (TakesScreenshot) driver;
+        TakesScreenshot ts =((TakesScreenshot) driver);
         File source = ts.getScreenshotAs(OutputType.FILE);
         File target = new File(System.getProperty("user.dir") + "/Screenshots/" + tname + ".png");
         FileUtils.copyFile(source, target);
         System.out.println("Screenshot taken");
+    }
+
+    public void PageDelay() throws InterruptedException {
+        Thread.sleep(3000);
     }
 
     public String randomestring()
@@ -72,6 +75,12 @@ public class BaseClass {
 
     @AfterClass
     public void closeBrowser() {
-        driver.quit();
+        driver.close();
     }
+
+    @AfterClass
+    public static void cleanUp(){
+        driver.manage().deleteAllCookies();
+    }
+
 }

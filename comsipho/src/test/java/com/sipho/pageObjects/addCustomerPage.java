@@ -8,12 +8,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class addCustomerPage {
+public class addCustomerPage{
 
     WebDriver localDriver;
 
     public addCustomerPage(WebDriver remoteDriver){
-        localDriver = remoteDriver;
+        this.localDriver = remoteDriver;
         PageFactory.initElements(remoteDriver, this);
 
     }
