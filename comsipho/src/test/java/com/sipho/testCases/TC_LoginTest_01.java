@@ -7,14 +7,11 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.logging.Logger;
-
 class TC_LoginTest_01 extends BaseClass {
 
 
     @Test
-    public void LoginTest() throws IOException {
+    public void loginTest() {
         logger.info("URL is reached");
         LoginPage loginPg = new LoginPage(driver);
         loginPg.setUserName(username);
@@ -23,15 +20,15 @@ class TC_LoginTest_01 extends BaseClass {
 
 
         try {
-            if (driver.getTitle().contains("Guru99 Bank Manager HomePage")) {
+            if (driver.getTitle().equals("Guru99 Bank Manager HomePage")) {
                 Assert.assertTrue(true);
                 logger.info("Login test passed");
 
-            } /*else {
-                //takeScreenShot(driver, "LoginTest");
-                Assert.assertFalse(false);
+            } else {
+                takeScreenShot(driver, "loginTest");
+                Assert.assertTrue(false);
                 logger.info("Login test failed");
-            }*/
+            }
         } catch (Exception e) {
             logger.info("getTitle exception handler");
         }
@@ -42,14 +39,14 @@ class TC_LoginTest_01 extends BaseClass {
             e.printStackTrace();
         }
 
-        if (isAlertPresent() == true) {
-            //this.takeScreenShot(driver, "LoginTest");
-            driver.switchTo().alert().accept();
-            driver.switchTo().defaultContent();
-            logger.info("Test failed as a result of incorrect Username OR password");
-            Assert.assertTrue(false);
 
-        }
+            if (isAlertPresent() == true) {
+                //this.takeScreenShot(driver, "LoginTest");
+                driver.switchTo().alert().accept();
+                driver.switchTo().defaultContent();
+                logger.info("Test failed as a result of incorrect Username OR password");
+                Assert.assertTrue(false);
+            }
     }
 
     private boolean isAlertPresent() {

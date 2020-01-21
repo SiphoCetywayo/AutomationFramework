@@ -6,12 +6,30 @@
         <listener class-name="com.sipho.utilities.Reporting" />
     </listeners>
 
-    <test name="Test">
+    <test name="Test1">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.sipho.testCases.TC_LoginTest_01"/>
 <!--            <class name="com.sipho.testCases.TC_AddNewCustomerTest_02"/>-->
 <!--            <class name="com.sipho.testCases.TC_LogoutTest_03" />-->
         </classes>
-    </test>  
+    </test>
+
+<!--    <test name="Test2">-->
+<!--        <parameter name="browser" value="firefox"/>-->
+<!--        <classes>-->
+<!--            <class name="com.sipho.testCases.TC_LoginTest_01"/>-->
+<!--&lt;!&ndash;            <class name="com.sipho.testCases.TC_AddNewCustomerTest_02"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="com.sipho.testCases.TC_LogoutTest_03" />&ndash;&gt;-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test name="Test3">-->
+<!--        <parameter name="browser" value="IE"/>-->
+<!--        <classes>-->
+<!--            <class name="com.sipho.testCases.TC_LoginTest_01"/>-->
+<!--&lt;!&ndash;            <class name="com.sipho.testCases.TC_AddNewCustomerTest_02"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="com.sipho.testCases.TC_LogoutTest_03" />&ndash;&gt;-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

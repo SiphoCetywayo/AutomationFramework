@@ -10,13 +10,14 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
 
@@ -28,7 +29,6 @@ public class BaseClass {
     public static Logger logger;
     public String actualResults = readConfig.getSiteTitle();
     public static WebDriver driver;
-
 
     //The set up method is responsible to check which web browser a test is running against
     @Parameters("browser")
@@ -45,27 +45,33 @@ public class BaseClass {
 
             System.setProperty("webdriver.gecko.driver", readConfig.getFirefoxPath());
             driver = new FirefoxDriver();
+
+        } else if (wbBrowser.equals("IE")) {
+
+            System.setProperty("webdriver.MicrosoftWebDriver.driver", readConfig.getIEPath());
+            driver = new InternetExplorerDriver();
         }
         driver.get(baseURL);
 
     }
 
     public void takeScreenShot(WebDriver driver, String tname) throws IOException {
-        TakesScreenshot ts =((TakesScreenshot) driver);
+        TakesScreenshot ts = ((TakesScreenshot) driver);
         File source = ts.getScreenshotAs(OutputType.FILE);
-        File target = new File(System.getProperty("user.dir") + "/Screenshots/" + tname + ".png");
+        File target = new File(System.getProperty("user.dir") + "/Screenshots/" + tname + ".jpg");
         FileUtils.copyFile(source, target);
         System.out.println("Screenshot taken");
+
     }
 
     public void PageDelay() throws InterruptedException {
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    public String randomestring()
-    {
-        String generatedstring= RandomStringUtils.randomAlphabetic(8);
-        return(generatedstring);
+    public String randomestring() {
+        String generatedstring = RandomStringUtils.randomAlphabetic(8);
+        return (generatedstring);
     }
 
     public static String randomeNum() {
@@ -79,7 +85,7 @@ public class BaseClass {
     }
 
     @AfterClass
-    public static void cleanUp(){
+    public static void cleanUp() {
         driver.manage().deleteAllCookies();
     }
 

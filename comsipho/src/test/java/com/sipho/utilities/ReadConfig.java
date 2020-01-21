@@ -8,14 +8,13 @@ import java.util.Properties;
 
 public class ReadConfig {
 
-    Properties properties;
+    Properties properties  = new Properties();
 
     public ReadConfig() {
         File src = new File("./Configuration/config.properties");
 
         try {
             FileInputStream fileInputStream = new FileInputStream(src);
-            properties = new Properties();
             properties.load(fileInputStream);
         } catch (Exception e) {
             System.out.println("Exception is: " + e.getMessage());

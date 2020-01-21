@@ -16,7 +16,7 @@ public class TC_AddNewCustomerTest_02 extends BaseClass{
         loginPg.setPassword(password);
         loginPg.clickSubmit();
 
-        Thread.sleep(3000);
+        PageDelay();//page delay with ref in BaseCLass.java
 
         addCustomerPage addCust = new addCustomerPage(driver);
 

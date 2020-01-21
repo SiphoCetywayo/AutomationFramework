@@ -11,7 +11,7 @@ public class LoginPage {
     WebDriver localDriver;
 
     public LoginPage(WebDriver remoteDriver){
-        localDriver = remoteDriver;
+        this.localDriver = remoteDriver;
         PageFactory.initElements(remoteDriver, this);
     }
 
