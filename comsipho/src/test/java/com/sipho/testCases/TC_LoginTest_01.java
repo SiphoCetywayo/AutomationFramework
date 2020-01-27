@@ -1,23 +1,20 @@
 package com.sipho.testCases;
 
 import com.sipho.pageObjects.LoginPage;
-import jdk.nashorn.internal.runtime.options.LoggingOption;
-import org.openqa.selenium.Alert;
+import junit.framework.Assert;
 import org.openqa.selenium.NoAlertPresentException;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-class TC_LoginTest_01 extends BaseClass {
+import java.io.IOException;
 
+public class TC_LoginTest_01 extends BaseClass{
 
     @Test
-    public void loginTest() {
-        logger.info("URL is reached");
+    public void loginTest() throws InterruptedException, IOException {
         LoginPage loginPg = new LoginPage(driver);
         loginPg.setUserName(username);
         loginPg.setPassword(password);
         loginPg.clickSubmit();
-
 
         try {
             if (driver.getTitle().equals("Guru99 Bank Manager HomePage")) {
@@ -39,14 +36,13 @@ class TC_LoginTest_01 extends BaseClass {
             e.printStackTrace();
         }
 
-
-            if (isAlertPresent() == true) {
-                //this.takeScreenShot(driver, "LoginTest");
-                driver.switchTo().alert().accept();
-                driver.switchTo().defaultContent();
-                logger.info("Test failed as a result of incorrect Username OR password");
-                Assert.assertTrue(false);
-            }
+        if (isAlertPresent() == true) {
+            //this.takeScreenShot(driver, "LoginTest");
+            driver.switchTo().alert().accept();
+            driver.switchTo().defaultContent();
+            logger.info("Test failed as a result of incorrect Username OR password");
+            Assert.assertTrue(false);
+        }
     }
 
     private boolean isAlertPresent() {
@@ -57,5 +53,4 @@ class TC_LoginTest_01 extends BaseClass {
             return false;
         }
     }
-
 }

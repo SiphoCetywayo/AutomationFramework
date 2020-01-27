@@ -2,12 +2,13 @@ package com.sipho.testCases;
 
 import com.sipho.pageObjects.LoginPage;
 import com.sipho.pageObjects.addCustomerPage;
+import org.openqa.selenium.NoAlertPresentException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class TC_AddNewCustomerTest_02 extends BaseClass{
+public class TC_AddNewCustomerTest_02 extends BaseClass {
 
     @Test
     public void AddNewCustomer() throws InterruptedException, IOException {
@@ -27,14 +28,14 @@ public class TC_AddNewCustomerTest_02 extends BaseClass{
 
         addCust.custName("Anathi");
         addCust.custgender("female");
-        addCust.custdob("10","15","1990");
+        addCust.custdob("10", "15", "1990");
         Thread.sleep(5000);
         addCust.custaddress("South Africa");
         addCust.custcity("CPT");
         addCust.custstate("SA");
         addCust.custpinno("47503629");
         addCust.custtelephoneno("0847187202");
-        String email=randomestring()+"@gmail.com";
+        String email = randomestring() + "@gmail.com";
         addCust.custemailid(email);
         addCust.custpassword("123456");
         addCust.custsubmit();
@@ -43,19 +44,35 @@ public class TC_AddNewCustomerTest_02 extends BaseClass{
 
         logger.info("validation started....");
 
-        boolean res=driver.getPageSource().contains("Customer Registered Successfully!!!");
+        boolean res = driver.getPageSource().contains("Customer Registered Successfully!!!");
 
-        if(res==true)
-        {
+        if (res == true) {
             Assert.assertTrue(true);
             logger.info("test case passed....");
 
-        }
-        else
-        {
+        } else {
             logger.info("test case failed....");
-            takeScreenShot(driver,"addNewCustomer");
+            takeScreenShot(driver, "addNewCustomer");
             Assert.assertTrue(false);
         }
+
+        if (isAlertPresent() == true) {
+            //this.takeScreenShot(driver, "LoginTest");
+            driver.switchTo().alert().accept();
+            driver.switchTo().defaultContent();
+            logger.info("Test failed as a result of incorrect Username OR password");
+            junit.framework.Assert.assertTrue(false);
+        }
+
+    }
+
+    private boolean isAlertPresent() {
+        try {
+            driver.switchTo().alert();
+            return true;
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
+
     }
 }
